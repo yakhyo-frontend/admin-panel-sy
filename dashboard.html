@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>DashBoard</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar">
+        <ul class="side-list">
+          <li class="side-item">
+            <a href="#" class="side-link">Products</a>
+          </li>
+          <li class="side-item">
+            <a href="#" class="side-link">Users</a>
+          </li>
+          <li class="side-item">
+            <a href="#" class="side-link">Cards</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="container">
+        <div class="nav-container">
+          <nav class="navbar">
+            <h2 class="admin-title">Admin - Dashboard</h2>
+            <input
+              class="input"
+              type="search"
+              placeholder="Write anything you need..."
+            />
+            <button id="openModal" class="open-modal-btn">Open Form</button>
+          </nav>
+        </div>
+
+        <div class="modal" id="modal">
+          <div class="modal__dialog">
+            <button class="modal__close" id="closeModal">x</button>
+            <form class="form modal__form">
+              <input
+                class="input2 image"
+                type="url"
+                name="image"
+                placeholder="Enter IMG url..."
+              />
+              <input
+                class="input2 title"
+                type="text"
+                name="title"
+                placeholder="Enter Title..."
+              />
+              <input
+                class="input2 price"
+                type="number"
+                name="price"
+                placeholder="Enter Price..."
+              />
+              <input
+                class="input2 category"
+                type="text"
+                name="category"
+                placeholder="Enter Category..."
+              />
+              <input
+                class="input2 description"
+                type="text"
+                name="description"
+                placeholder="Enter Description..."
+              />
+              <div class="form-buttons">
+                <button type="submit" class="btn submit-btn">Add</button>
+                <button type="button" class="btn cancel-btn" id="closeModalBtn">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="modal" id="editModal">
+          <div class="modal__dialog">
+            <button class="modal__close" id="closeEditModal">x</button>
+            <form class="modal__form edit-form">
+              <input
+                class="input2 image"
+                type="url"
+                name="image"
+                placeholder="Enter IMG url..."
+              />
+              <input
+                class="input2 title"
+                type="text"
+                name="title"
+                placeholder="Enter Title..."
+              />
+              <input
+                class="input2 price"
+                type="number"
+                name="price"
+                placeholder="Enter Price..."
+              />
+              <input
+                class="input2 category"
+                type="text"
+                name="category"
+                placeholder="Enter Category..."
+              />
+              <input
+                class="input2 description"
+                type="text"
+                name="description"
+                placeholder="Enter Description..."
+              />
+              <div class="form-buttons">
+                <button type="submit" class="update btn submit-btn">
+                  Save
+                </button>
+                <button
+                  type="button"
+                  class="btn cancel-btn"
+                  id="closeEditModalBtn"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="modal" id="viewModal">
+          <div class="modal__dialog view-dialog">
+            <button class="modal__close" id="closeViewModal">x</button>
+            <div class="view-card">
+              <img class="view-card__image" src="" alt="Product image" />
+              <div class="view-card__content">
+                <h3 class="view-card__title"></h3>
+                <p class="view-card__price"></p>
+                <p class="view-card__category"></p>
+                <p class="view-card__description"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="tr">T/R</th>
+              <th>Image</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Category</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="./js/dashboard.js"></script>
+  </body>
+</html>
