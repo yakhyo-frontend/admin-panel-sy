@@ -214,7 +214,7 @@ th {
 
 .modal__dialog {
   width: min(520px, 90%);
-  max-height: 460px;
+  max-height: 500px;
   padding: 16px 18px;
   border-radius: 20px;
   background: rgba(16, 24, 69, 0.96);
