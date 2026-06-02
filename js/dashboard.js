@@ -314,7 +314,7 @@ if (categoryFilter) {
     if (selectedCategory === "all") {
       showProducts(allProducts);
     } else {
-      const filtered = allProducts.filter((product) => {
+      const filtered = allProducts((product) => {
         return (
           product.category.toLowerCase() === selectedCategory.toLowerCase()
         );
@@ -340,7 +340,7 @@ if (categoryFilter) {
 //         );
 //       });
 
-//       showProducts(filtered);
+//       showProducts(allProducts);
 //     }
 //   });
 // }

@@ -448,6 +448,12 @@ th {
   color: #edf2ff;
 }
 
+.select:hover {
+  background: #94a3b8;
+  color: #1f285f;
+  transition: all 0.7s ease;
+}
+
 .select:focus {
   background: #141f47;
   transition: all 0.7s ease;
