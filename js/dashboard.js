@@ -314,7 +314,7 @@ if (categoryFilter) {
     if (selectedCategory === "all") {
       showProducts(allProducts);
     } else {
-      const filtered = allProducts((product) => {
+      const filtered = allProducts.filter((product) => {
         return (
           product.category.toLowerCase() === selectedCategory.toLowerCase()
         );
