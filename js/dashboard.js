@@ -2,13 +2,17 @@
 
 const API = `https://fakestoreapi.com/products`;
 const tBody = document.querySelector("tbody");
+let allProducts = [];
 
 const getProducts = (url) => {
   fetch(url, {
     method: "GET",
   })
     .then((response) => response.json())
-    .then((data) => showProducts(data))
+    .then((data) => {
+      allProducts = data;
+      showProducts(allProducts);
+    })
     .catch((error) => {
       console.error(error);
       Toastify({
@@ -27,6 +31,8 @@ const getProducts = (url) => {
 getProducts(API);
 
 function showProducts(data) {
+  tBody.innerHTML = "";
+
   data.forEach((element) => {
     const { id, image, title, price, category, description } = element;
 
@@ -298,3 +304,43 @@ function viewModal(id) {
       if (viewDescription) viewDescription.textContent = description;
     });
 }
+
+const categoryFilter = document.getElementById("categoryFilter");
+
+if (categoryFilter) {
+  categoryFilter.addEventListener("change", (e) => {
+    const selectedCategory = e.target.value;
+
+    if (selectedCategory === "all") {
+      showProducts(allProducts);
+    } else {
+      const filtered = allProducts.filter((product) => {
+        return (
+          product.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+      });
+
+      showProducts(filtered);
+    }
+  });
+}
+
+// const categoryFilter = document.getElementById("categoryFilter");
+
+// if (categoryFilter) {
+//   categoryFilter.addEventListener("change", (e) => {
+//     const selectedCategory = e.target.value;
+
+//     if (selectedCategory === "all") {
+//       showProducts(allProducts);
+//     } else {
+//       const filtered = allProducts.filter((product) => {
+//         return (
+//           product.category.toLowerCase() === selectedCategory.toLowerCase()
+//         );
+//       });
+
+//       showProducts(filtered);
+//     }
+//   });
+// }
