@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/dashboard", "destination": "/pages/dashboard.html" },
+    { "source": "/users", "destination": "/pages/users.html" },
+    { "source": "/(.*)", "destination": "/pages/$1" }
+  ]
+}
