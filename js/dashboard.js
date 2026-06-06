@@ -324,23 +324,3 @@ if (categoryFilter) {
     }
   });
 }
-
-// const categoryFilter = document.getElementById("categoryFilter");
-
-// if (categoryFilter) {
-//   categoryFilter.addEventListener("change", (e) => {
-//     const selectedCategory = e.target.value;
-
-//     if (selectedCategory === "all") {
-//       showProducts(allProducts);
-//     } else {
-//       const filtered = allProducts.filter((product) => {
-//         return (
-//           product.category.toLowerCase() === selectedCategory.toLowerCase()
-//         );
-//       });
-
-//       showProducts(allProducts);
-//     }
-//   });
-// }
