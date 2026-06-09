@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Carts</title>
+    <link rel="stylesheet" href="../styles/carts.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <aside class="sidebar">
+        <ul class="side-list">
+          <li class="side-box">
+            <a href="../pages/dashboard.html" class="side-link">Products</a>
+          </li>
+          <li class="side-box">
+            <a href="../pages/users.html" class="side-link">Users</a>
+          </li>
+          <li class="side-box side-box--active">
+            <a href="../pages/carts.html" class="side-link">Carts</a>
+          </li>
+        </ul>
+      </aside>
+
+      <main class="container">
+        <div class="nav-container">
+          <nav class="navbar">
+            <h2 class="admin-title">Carts - Information</h2>
+            <input
+              id="searchInput"
+              class="input"
+              type="search"
+              placeholder="Write cart id, user id, or product..."
+            />
+          </nav>
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr class="table-row">
+              <th>Cart Id</th>
+              <th>User Id</th>
+              <th>Date</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Products</th>
+            </tr>
+          </thead>
+          <tbody id="cartsBody"></tbody>
+        </table>
+
+        <p id="loadingState" class="state">Loading carts...</p>
+        <p id="emptyState" class="state" hidden>
+          No carts found for the current filter.
+        </p>
+      </main>
+    </div>
+
+    <script src="../js/carts.js"></script>
+  </body>
+</html>
