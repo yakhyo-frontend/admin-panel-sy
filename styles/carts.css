@@ -140,40 +140,99 @@ li {
   color: #cbd5e1;
 }
 
-.table {
+table {
   width: 90%;
   margin: 0 auto;
   border-collapse: collapse;
+  border: 1px solid;
 }
 
-.table-row {
-  display: grid;
-  grid-template-columns: 120px 120px 160px 100px 120px 1fr;
-  gap: 15px;
-  padding: 10px 20px;
+th,
+tr,
+td {
+  border: 1px solid;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.modal {
+  position: fixed;
+  height: 100vh;
+  inset: 0;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  background: rgba(8, 12, 30, 0.82);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 100;
+}
+
+.modal.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal__dialog {
+  width: min(520px, 90%);
+  max-height: 500px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: rgba(16, 24, 69, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(20px);
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+.view-dialog {
+  width: 100%;
+  min-height: auto;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.modal.show .modal__dialog {
+  transform: translateY(0);
+}
+
+.modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+tr {
+  border-bottom: 1px solid rgba(237, 242, 255, 0.12);
 }
 
 th,
 td {
-  padding: 15px;
+  padding: 14px 12px;
   text-align: start;
   vertical-align: top;
+  /* Делаем границу более видимой ( opacity 0.25 вместо 0.12 ) */
+  border-bottom: 1px solid rgba(237, 242, 255, 0.25);
 }
 
 th {
-  width: auto;
+  /* Для заголовков можно сделать границу чуть ярче */
+  border-bottom: 2px solid rgba(237, 242, 255, 0.5);
+  font-weight: 700;
 }
 
-tbody tr {
-  display: grid;
-  grid-template-columns: 120px 120px 160px 100px 120px 1fr;
-  gap: 15px;
-  padding: 15px 20px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-  background: rgba(15, 23, 55, 0.75);
-  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.18);
+tbody tr:hover {
+  background: rgba(15, 23, 55, 0.5);
 }
 
 .state {
@@ -198,6 +257,12 @@ tbody tr {
   line-height: 1.4;
 }
 
+.img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -206,56 +271,5 @@ tbody tr {
   100% {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@media (max-width: 1100px) {
-  .wrapper {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    height: auto;
-  }
-
-  .side-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 20px;
-  }
-
-  .side-box {
-    width: auto;
-    min-width: 150px;
-  }
-
-  .container {
-    margin: 20px;
-    height: auto;
-  }
-
-  .nav-container,
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .input {
-    width: 100%;
-  }
-
-  .table,
-  .results,
-  .state {
-    width: 90%;
-  }
-
-  .table-row,
-  tbody tr {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 }

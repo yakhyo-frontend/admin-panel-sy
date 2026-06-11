@@ -1,45 +1,99 @@
-const cartsAPI = `https://fakestoreapi.com/carts`;
+const cartsAPI = "https://fakestoreapi.com/carts";
 const productsAPI = `https://fakestoreapi.com/products`;
+const tBody = document.querySelector("tbody");
 
-const cartsBody = document.getElementById("cartsBody");
-const loadingState = document.getElementById("loadingState");
-const emptyState = document.getElementById("emptyState");
-const resultsLabel = document.getElementById("resultsLabel");
-const searchInput = document.getElementById("searchInput");
+const fetchData = (url) => {
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      showData(data);
+    });
+};
 
-let carts = [];
-let filteredCarts = [];
+fetch(cartsAPI);
 
-fetch(cartsAPI)
-  .then((res) => res.json())
-  .then((data) => {
-    carts = data;
-    filteredCarts = carts;
-    showCarts(data);
-  });
+// let firstName, lastName;
 
-fetch(productsAPI)
-  .then((res) => res.json())
-  .then((data) => showProducts(data));
+function showData(data) {
+  console.log(data);
 
-function showCarts(data) {
-  data.forEach((element) => {
-    const { id, date, userId } = element;
-    cartsBody.innerHTML += `
-    <p>${id}</p>
-    <p>${userId}</p>
-    <p>${date}</p>
+  data.map((item) => {
+    const { id, userId, products, date } = item;
+
+    tBody.innerHTML += `
+              <tr class="table-row">
+              <td>${id}</td>
+              <td>${userId}</td>
+              <td>${date}</td>
+              <td>3</td>
+              <td>
+                <button onclick="viewModal(${userId})">View</button>
+              </td>
+              </tr>
     `;
+
+    getSingleUser(userId);
   });
 }
 
-function showProducts(data) {
-  data.forEach((element) => {
-    const { id, title, price } = element;
-    cartsBody.innerHTML += `
-    <p>${id}</p>
-    <p>${title}</p>
-    <p>${price}</p>
-    `;
+// GetSingleUser
+const getSingleUser = (id) => {
+  console.log(id);
+
+  fetch(`https://fakestoreapi.com/users/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
+};
+
+const openModal = document.getElementById("openModal");
+const closeModal = document.getElementById("closeModal");
+const closeModalBtn = document.getElementById("closeModalBtn");
+const modal = document.getElementById("modal");
+const content = document.querySelector(".content");
+
+if (openModal && closeModal && modal) {
+  openModal.addEventListener("click", () => {
+    modal.classList.add("show");
   });
+
+  closeModal.addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
+
+  if (closeModalBtn) {
+    closeModalBtn.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+  }
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.classList.remove("show");
+    }
+  });
+}
+
+function viewModal(userId) {
+  if (elViewModal) {
+    elViewModal.classList.add("show");
+
+    console.log(userId);
+
+    fetch(`https://fakestoreapi.com/users/${userId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+
+        const { name } = data;
+
+        content.innerHTML = `
+         <div>
+              <p>Ism : ${name.firstName}</p>
+              <p>Familiya : ${name.lastName}</p>
+            </div>
+        `;
+      });
+  }
 }
