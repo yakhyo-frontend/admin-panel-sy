@@ -37,7 +37,7 @@ function showProducts(data) {
     const { id, image, title, price, category, description } = element;
 
     tBody.innerHTML += `
-    <tr>
+    <tr class="table-row">
       <td>${element.id}</td>
       <td><img src="${element.image}" alt="${element.title}" width="50" /></td>
       <td class="t-title">${element.title.slice(0, 20)}...</td>

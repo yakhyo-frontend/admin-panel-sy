@@ -7,15 +7,19 @@ const fetchData = (url) => {
     .then((res) => res.json())
     .then((data) => {
       showData(data);
+    })
+    .catch((error) => {
+      console.error(error);
     });
 };
 
-fetch(cartsAPI);
+fetchData(cartsAPI);
 
 // let firstName, lastName;
 
 function showData(data) {
   console.log(data);
+  tBody.innerHTML = "";
 
   data.map((item) => {
     const { id, userId, products, date } = item;
@@ -27,7 +31,7 @@ function showData(data) {
               <td>${date}</td>
               <td>3</td>
               <td>
-                <button onclick="viewModal(${userId})">View</button>
+                <button class="btn" onclick="viewModal(${userId})">View</button>
               </td>
               </tr>
     `;
@@ -49,24 +53,32 @@ const getSingleUser = (id) => {
 
 const openModal = document.getElementById("openModal");
 const closeModal = document.getElementById("closeModal");
-const closeModalBtn = document.getElementById("closeModalBtn");
+// const closeModalBtn = document.getElementById("closeModal");
 const modal = document.getElementById("modal");
+const elViewModal = document.getElementById("modal");
 const content = document.querySelector(".content");
+
+const closeBtn = document.querySelector(".modal__close");
+
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    modal.classList.remove("show");
+  });
+}
 
 if (openModal && closeModal && modal) {
   openModal.addEventListener("click", () => {
     modal.classList.add("show");
   });
 
-  closeModal.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
+  //   closeModal.addEventListener("click", () => {
+  //     modal.classList.remove("show");
+  //   });
 
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", () => {
-      modal.classList.remove("show");
-    });
-  }
+  //   closeModalBtn.addEventListener("click", () => {
+  //     modal.classList.remove("show");
+  //     console.log("close");
+  //   });
 
   modal.addEventListener("click", (event) => {
     if (event.target === modal) {
@@ -87,11 +99,12 @@ function viewModal(userId) {
         console.log(data);
 
         const { name } = data;
+        const { firstname, lastname } = name;
 
         content.innerHTML = `
          <div>
-              <p>Ism : ${name.firstName}</p>
-              <p>Familiya : ${name.lastName}</p>
+              <p>Ism : ${firstname}</p>
+              <p>Familiya : ${lastname}</p>
             </div>
         `;
       });
